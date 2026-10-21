@@ -345,30 +345,3 @@ elif portal.endswith("Staff portal"):
             st.success("Models retrained and saved. New requests now use the updated models.")
             st.rerun()
 
-# ================================================================ ABOUT
-else:
-    hero("ABOUT", "Responsible AI", "How CityFix keeps people in control, and what it cannot do yet.")
-    rows = [
-        ("Wrong routing delays an emergency", "Safety rules can only raise urgency, never lower it. Critical tickets always go to a human."),
-        ("Overconfidence", "Low-confidence and off-topic messages go to a manual triage desk instead of being guessed."),
-        ("Bias across areas or languages", "Training data must cover all wards and South African languages. Response times are monitored per area."),
-        ("Privacy (POPIA)", "Phone number and address are optional or minimal, SMS needs the resident's consent, numbers are masked for staff, a tracking code protects each ticket, and data retention must be defined."),
-        ("Explainability", "Staff see the AI's confidence, category and urgency, and can correct any of them."),
-        ("Accountability", "Officers can override any decision. Corrections are logged and used to retrain the model."),
-        ("Digital exclusion", "Residents without smartphones can report through the call centre, using the same tool."),
-        ("Drift", "Monthly review of accuracy, correction rate and complaints; retrain when performance drops."),
-    ]
-    for i in range(0, len(rows), 2):
-        cols = st.columns(2)
-        for col, (t, b) in zip(cols, rows[i:i + 2]):
-            col.markdown(card(t, b), unsafe_allow_html=True)
-        st.write("")
-    st.subheader("Model performance")
-    m1, m2 = st.columns(2)
-    m1.metric("Category accuracy", f"{report['category']['accuracy']:.0%}")
-    m2.metric("Urgency accuracy", f"{report['urgency']['accuracy']:.0%}")
-    st.info("These scores are very high because the training data is templated and synthetic. "
-            "Real-world accuracy will be lower and must be measured on real, labelled municipal tickets before any deployment.")
-    st.markdown("**Known limitations:** synthetic English-only training data, no location or image understanding, "
-                "no duplicate-report detection, SMS runs in demo mode unless an SMS provider is configured, no WhatsApp or email, demo staff PIN, "
-                "and a local SQLite database that resets when the app restarts on free hosting.")
