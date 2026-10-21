@@ -150,7 +150,7 @@ def render_thread(ticket_id: int):
 # ---------------------------------------------------------------- layout
 st.sidebar.markdown("## 🏙️ CityFix")
 st.sidebar.caption("Municipal service requests, made simple.")
-portal = st.sidebar.radio("Go to", ["🏠 Resident portal", "🧑‍💼 Staff portal", "ℹ️ About & Responsible AI"], label_visibility="collapsed")
+portal = st.sidebar.radio("Go to", ["🏠 Resident portal", "🧑‍💼 Staff portal"], label_visibility="collapsed")
 st.sidebar.caption("Demo mode: please do not enter real personal details.")
 
 # ================================================================ RESIDENT
